@@ -3,6 +3,7 @@ import Navbar from '@/components/navbar/Navbar'
 import LeftBar from '@/components/leftBar/LeftBar'
 import RightBar from '@/components/rightBar/RightBar'
 import '@/app/style.scss'
+import ThemeProvider from '@/context/ThemeProvider'
 
 
 export const metadata = {
@@ -13,7 +14,7 @@ export const metadata = {
 export default function UserLayout({ children }) {
   return (
     <>
-      <div className='theme-dark'>
+      <ThemeProvider>
         <Navbar />
         <div style={{ display: "flex" }}>
           <LeftBar />
@@ -22,7 +23,7 @@ export default function UserLayout({ children }) {
           </div>
           <RightBar />
         </div>
-      </div>
+      </ThemeProvider>
     </>
   )
 }

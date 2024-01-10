@@ -8,11 +8,10 @@ export const DarkModeContextProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState(() => {
         if (typeof window !== 'undefined') {
             if (localStorage.getItem("darkMode")) {
-                return localStorage.getItem("darkMode")
-            } else {
-                return false
+                return JSON.parse(localStorage.getItem("darkMode"))
             }
         }
+        return false
     }
     );
 

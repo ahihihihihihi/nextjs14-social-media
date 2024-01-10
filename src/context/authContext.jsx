@@ -8,11 +8,10 @@ export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(() => {
         if (typeof window !== 'undefined') {
             if (localStorage.getItem("user")) {
-                return localStorage.getItem("user")
-            } else {
-                return false
+                return JSON.parse(localStorage.getItem("user"))
             }
         }
+        return false
     }
     );
 
