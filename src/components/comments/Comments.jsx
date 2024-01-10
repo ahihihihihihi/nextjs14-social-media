@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./Comments.scss";
 import { AuthContext } from "../../context/authContext";
+import Link from "next/link";
 
 const Comments = () => {
     const { currentUser } = useContext(AuthContext);
@@ -26,15 +27,31 @@ const Comments = () => {
     return (
         <div className="comments">
             <div className="write">
-                <img src={currentUser.profilePic} alt="" />
+                <Link
+                    href={`/profile/${currentUser.id}`}
+                    className="link"
+                >
+                    <img src={currentUser.profilePic} alt="" />
+                </Link>
                 <input type="text" placeholder="write a comment" />
                 <button>Send</button>
             </div>
             {comments.map((comment) => (
                 <div className="comment" key={comment.id}>
-                    <img src={comment.profilePicture} alt="" />
+                    <Link
+                        href={`/profile/${comment.userId}`}
+                        className="link"
+                    >
+                        <img src={comment.profilePicture} alt="" />
+                    </Link>
+
                     <div className="info">
-                        <span>{comment.name}</span>
+                        <Link
+                            href={`/profile/${comment.userId}`}
+                            className="link"
+                        >
+                            <span>{comment.name}</span>
+                        </Link>
                         <p>{comment.desc}</p>
                     </div>
                     <span className="date">1 hour ago</span>

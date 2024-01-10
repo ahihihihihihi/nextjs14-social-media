@@ -2,17 +2,26 @@
 
 import { AuthContext } from "@/context/authContext";
 import "./Login.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'
 
 
 const Login = () => {
 
-    const { login } = useContext(AuthContext);
+    const router = useRouter()
+
+    const { login, currentUser } = useContext(AuthContext);
 
     const handleLogin = () => {
         login();
     };
+
+    useEffect(() => {
+        if (currentUser) {
+            router.push("/")
+        }
+    }, [currentUser])
 
     return (
         <div className="login">
@@ -24,7 +33,7 @@ const Login = () => {
                         alias totam numquam ipsa exercitationem dignissimos, error nam,
                         consequatur.
                     </p>
-                    <span>Don't you have an account?</span>
+                    <span>{`Don't you have an account?`}</span>
                     <Link href="/register">
                         <button>Register</button>
                     </Link>
